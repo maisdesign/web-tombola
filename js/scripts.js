@@ -3,10 +3,17 @@ addEventListener("DOMContentLoaded", (event) => {
     let numeroEstratto = 0;
     const extractorButton = document.getElementById("extractor");
     const tombolaZone = document.getElementById("tombola");
-    let numerocreato;
+    let numeroCreato = [];
+    let i = 0;
+    let spacer = 0;
 
-    for (i = 1; i <= numeri; i++) {
-        let numeroCreato = tombolaZone.innerHTML('<p class="single-number not-selected rounded-circle border text-center align-middle">' + i + '</p>');
+
+    for (i; i < numeri; i++) {
+        spacer = i + 1;
+        numeroCreato.push(spacer);
+        numeroCreato[i] = '<div class="col-1 m-1 align-items-center"><p class="mx-auto single-number not-selected rounded-circle border text-center">' + spacer + '</p></div>';
+        tombolaZone.innerHTML += numeroCreato[i];
+        console.log(numeroCreato[i]);
     }
     extractorButton.addEventListener("click", function () {
 
