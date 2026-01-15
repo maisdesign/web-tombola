@@ -1,0 +1,41 @@
+:root {
+    --background-color: #17a494;
+    --h1-color: #fff;
+    --text-color: #888;
+    --not-selected: #fff;
+    --selected-number: rgb(245, 142, 159);
+}
+
+body {
+    background-color: var(--background-color);
+    font-size: 16px;
+}
+
+h1 {
+    font-family: "Gochi Hand", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--h1-color);
+    font-size: 4rem;
+}
+
+p.single-number {
+    font-size: 2rem;
+}
+
+.single-number {
+    height: 50px;
+    width: 50px
+}
+
+.not-selected {
+    background-color: var(--not-selected);
+    box-shadow: -2px 1px 1px 1px #aaa;
+    border-color: #999;
+}
+
+.selected {
+    background-color: var(--selected-number);
+    box-shadow: -2px 1px 1px 1px #F58E9F63;
+    border-color: #F58E9FBA;
+}
