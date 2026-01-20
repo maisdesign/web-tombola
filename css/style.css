@@ -1,7 +1,7 @@
 :root {
     --background-color: #17a494;
     --h1-color: #fff;
-    --text-color: #888;
+    --text-color: #444;
     --not-selected: #fff;
     --selected-number: rgb(245, 142, 159);
 }
@@ -11,7 +11,8 @@ body {
     font-size: 16px;
 }
 
-h1 {
+h1,
+p.single-number {
     font-family: "Gochi Hand", cursive;
     font-weight: 400;
     font-style: normal;
@@ -21,6 +22,7 @@ h1 {
 
 p.single-number {
     font-size: 2rem;
+    color: var(--text-color);
 }
 
 .single-number {
