@@ -1,44 +1,48 @@
 addEventListener("DOMContentLoaded", (event) => {
     const NUMERO_TOTALE = 90;
-    let indiceEstratto = 0;
     const bottoneEstrai = document.getElementById("extractor");
+    const bottoneReset = document.getElementById("terminator");
     const grigliaTombola = document.getElementById("tombola");
     const ultimoEstrattoDOM = document.getElementById("ultimoEstrattoDOM");
-    let grigliaNumeri = [];
-    let i = 0;
-    let spacer = 0;
     let numeriIniziali = [];
-    let numeroDaEliminare;
 
-    function randomExtraction(numeri) {
-        return Math.floor(Math.random() * numeri);
-    }
-    function selectNumber(indiceEstratto) {
-        let elementoSelezionato = document.getElementById("numero" + indiceEstratto);
-    }
-
-    for (i; i < NUMERO_TOTALE; i++) {
-        spacer = i + 1;
+    for (let i = 0; i < NUMERO_TOTALE; i++) {
+        let spacer = i + 1;
         numeriIniziali.push(spacer);
-        grigliaNumeri[i] = '<div class="col-1 m-1 align-items-center"><p class="mx-auto single-number not-selected rounded-circle border text-center" id="numero' + i + '">' + spacer + '</p></div>';
-        grigliaTombola.innerHTML += grigliaNumeri[i];
+        grigliaTombola.innerHTML += '<div class="col-1 m-1 align-items-center"><p class="mx-auto single-number not-selected rounded-circle border text-center" id="numero' + i + '">' + spacer + '</p></div>';
     }
     let numeriDisponibili = [...numeriIniziali]; //Qui setto i numeri da estrarre
 
     bottoneEstrai.addEventListener("click", function () {
-        console.log("Numeri da estrarre inizio " + numeriDisponibili);
+
         if (numeriDisponibili.length != 0) {
-            indiceEstratto = Math.floor(Math.random() * numeriDisponibili.length);
-            numeroEstratto = numeriDisponibili[indiceEstratto];
+            let indiceEstratto = Math.floor(Math.random() * numeriDisponibili.length);
+            let numeroEstratto = numeriDisponibili[indiceEstratto];
             ultimoEstrattoDOM.innerHTML = "<p class='numero-estratto'>" + numeroEstratto + "</p>";
-            console.log("Posizione Numero Estratto: " + indiceEstratto);
-            numeroDaEliminare = numeriDisponibili[indiceEstratto];
-            console.log("Numero da eliminare: " + numeroDaEliminare);
+
+
+
             numeriDisponibili.splice(indiceEstratto, 1);
-            console.log("Numeri da estrarre fine " + numeriDisponibili);
+
+            let numeroSelezionato = document.getElementById("numero" + (numeroEstratto - 1));
+            numeroSelezionato.classList.add("selected");
         } else {
-            console.log("Numeri Finiti")
+
+            bottoneEstrai.innerHTML = "Numeri finiti, resetta e riparti";
+            bottoneEstrai.classList.add("disabled");
+            bottoneEstrai.disabled = true;
         }
+    })
+    bottoneReset.addEventListener("click", function () {
+
+        numeriDisponibili = numeriDisponibili = [...numeriIniziali];
+        for (let i = 0; i < NUMERO_TOTALE; i++) {
+            numeroSelezionato = document.getElementById("numero" + i);
+            numeroSelezionato.classList.remove("selected");
+        }
+        bottoneEstrai.classList.remove("disabled");
+        bottoneEstrai.disabled = false;
+        bottoneEstrai.innerHTML = "Estrai";
     })
 
 })
